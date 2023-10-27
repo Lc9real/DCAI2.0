@@ -7,7 +7,11 @@ import os
 
 def run_discord_bot():
     TOKEN = open("Info.txt", "r").readlines()[0][6:]
-    intents = discord.Intents(messages=True, guilds=True, message_content=True, members=True)
+    intents = discord.Intents.default()
+    intents.members = True
+    intents.messages = True
+    intents.message_content = True
+    intents.guilds = True
 
     client = discord.Client(intents=intents)
     tree = app_commands.CommandTree(client)

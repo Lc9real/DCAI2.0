@@ -5,7 +5,7 @@ from torch import autocast
 from diffusers import StableDiffusionPipeline, EulerAncestralDiscreteScheduler
 import os
 
-fastpic = True
+fastpic = False
 try:
     model_name = open("./Model/Model_Path.txt", "r").readlines()[1][19:]
 except IndexError as e:

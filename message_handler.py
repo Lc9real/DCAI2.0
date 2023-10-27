@@ -8,8 +8,12 @@ from datetime import datetime
 
 async def send_message(message, is_private, bot):
     user_timestamp = datetime.now().strftime("%d.%m.%Y %H:%M:%S")
-    if "<@1165020606044049491>" in message.content:
-        message.content = message.content.replace("<@1165020606044049491>", "@SIA")
+    user_tag_pattern = r'<@(\d+)>'
+    user_tag_matches = re.findall(user_tag_pattern, message.content)
+    for match in user_tag_matches:
+        name = await message.guild.fetch_member(match)
+        message.content = message.content.replace(f"<@{match}>", "@"+str(name))
+    if "@SIA" in message.content:
         async with message.channel.typing():
             response = llm_backend.call_Model(message.content, message.channel, user_timestamp, message.author)
             channel_pattern = r'\[(.*?)\]'
@@ -42,6 +46,8 @@ async def send_message(message, is_private, bot):
                 await discord.utils.get(message.guild.channels, name=channel_matches[0]).send(response)
             else:
                 await message.author.send(response) if is_private else await message.channel.send(response)
+    else:
+        llm_backend.memory.add_Memory(message.author, message.content, message.channel, user_timestamp)
 
 
 

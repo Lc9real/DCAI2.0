@@ -44,7 +44,6 @@ def call_Model(inp:str, channel_name:str, time, user_name="Unknown") -> str:
     llm_timestamp = datetime.now().strftime("%d.%m.%Y %H:%M:%S")
     if Debug:
         print(output["choices"][0]["text"])
-    output["choices"][0]["text"] = "[hentai] {apple} @stormoutside"
     memory.add_Memory(user_name, inp, channel_name, user_timestamp)
     memory.add_Memory("SIA", output["choices"][0]["text"], channel_name, llm_timestamp)
     return output["choices"][0]["text"]
