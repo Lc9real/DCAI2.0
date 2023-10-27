@@ -15,24 +15,30 @@ async def send_message(message, is_private, bot):
             channel_pattern = r'\[(.*?)\]'
             picture_pattern = r'\{(.+?)\}'
             tag_pattern = r"@(\w+)"
+
             tag_matches = re.findall(tag_pattern, response)
             for match in tag_matches:
-                response = response.replace(f"@{match}", f"<@{message.guild.get_member_named(match).id}>")
+                try:
+                    response = response.replace(f"@{match}", f"<@{message.guild.get_member_named(match).id}>")
+                except Exception as e:
+                    pass
             channel_matches = re.findall(channel_pattern, response)
             images_matches = re.findall(picture_pattern, response)
             if "```" in response:
                 channel_matches = []
                 images_matches = []
+            else:
                 for match in channel_matches:
                     response = response.replace(f'[{match}]', '')
-            if channel_matches and images_matches:
+
+            if channel_matches and images_matches and not is_private:
                 await images(images_matches, response, discord.utils.get(message.guild.channels, name=channel_matches[0]))
             elif images_matches:
                 if is_private:
                     await images(images_matches, response, message.author)
                 else:
                     await images(images_matches, response, message.channel)
-            elif channel_matches:
+            elif channel_matches and not is_private:
                 await discord.utils.get(message.guild.channels, name=channel_matches[0]).send(response)
             else:
                 await message.author.send(response) if is_private else await message.channel.send(response)
