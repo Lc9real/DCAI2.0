@@ -48,6 +48,8 @@ async def send_message(message, is_private, bot):
                 await message.author.send(response) if is_private else await message.channel.send(response)
     else:
         llm_backend.memory.add_Memory(message.author, message.content, message.channel, user_timestamp)
+    llm_backend.check_lenght(str(message.channel))
+
 
 
 
