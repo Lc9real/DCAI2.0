@@ -31,9 +31,7 @@ async def send_message(message, is_private, bot):
             if "```" in response:
                 channel_matches = []
                 images_matches = []
-            else:
-                for match in channel_matches:
-                    response = response.replace(f'[{match}]', '')
+
 
             if channel_matches and images_matches and not is_private:
                 await images(images_matches, response, discord.utils.get(message.guild.channels, name=channel_matches[0]))

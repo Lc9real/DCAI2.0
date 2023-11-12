@@ -17,7 +17,8 @@ Our journey was a blend of learning, programming, and creativity. I wasn't just 
 ''''''
 
 
-
+Summarize the contents of the following Discord channel systematically and robotically. You should analyze and condense messages in a structured manner, focusing on extracting key information about the chat. Ensure that image descriptions included between {{ and }} are included if needed. Please avoid including any information about SIA look or thoughts in the summary. Feel free to include relevant images by describing them. Ensure that the summary encompasses the important discussions in the channel. 
+The summary should be from SIA's perspective.
 
 
 
@@ -26,10 +27,7 @@ The channel to Summarize:
 {channel}
 '''
 
-Summarize the contents of the Discord chat systematically and robotically. You should analyze and condense messages in a structured manner, focusing on extracting key information about the chat. Ensure that image descriptions included between {{ and }} are included if needed. Please avoid including any information about SIA look or thoughts in the summary. Feel free to include relevant images by describing them. Ensure that the summary encompasses the important discussions in the channel. 
-The summary should be from SIA's perspective.
-
-Summary of the chat:
+Summary of the channel:
 """
 
 

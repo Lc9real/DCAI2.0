@@ -1,2 +1,2 @@
-LLM=C:/Users/lukac/SIA/Model/synthia-13b-v1.2.Q8_0.gguf
+LLM=./Model/synthia-7b-v2.0.Q8_0.gguf
 Picture Generation=C:\sdwebui\Stable2\stable-diffusion-webui\models\Stable-diffusion\epicrealism_pureEvolutionV3.safetensors

@@ -3,14 +3,12 @@ import os
 
 
 
-# Todo: Add Memory zusammenfassung
+
 class Memory_System():
         def __init__(self, MemoryKey:str):
             self.memory_key = MemoryKey
             if not os.path.exists(f"./Memory/{self.memory_key}"):
                 os.makedirs(f"./Memory/{self.memory_key}")
-            if not os.path.exists(f"./Memory/{self.memory_key}/Summary"):
-                os.makedirs(f"./Memory/{self.memory_key}/Summary")
 
 
         def get_Memory(self, specific_channel:str=None, excluded_channel :list[str]=[]) -> str:
@@ -34,7 +32,6 @@ class Memory_System():
                     return ""
             else:
                 for file in allfiles:
-                    f = open(f"./Memory/{self.memory_key}/{file}", "r", encoding="utf-8")
                     if str(file[:-7]) not in excluded_channel:
                         f = open(f"./Memory/{self.memory_key}/{file}", "r", encoding="utf-8")
                         content = content + f"\n###{file[:-7]}###\n\n" + f.read()
